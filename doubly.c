@@ -127,10 +127,11 @@ void display_rev(){
 		    
 				
 			printf("|%u||%d||%u|",last_node->next_link,last_node->data,last_node->before_link);
+			last_node=last_node->before_link;
 			            if(last_node!=NULL){
 			                printf("-->");
 			            }
-			last_node=last_node->before_link;
+			
 		}
 	
     printf("\n\n***************Doubly linked list Reverse***************\n");
