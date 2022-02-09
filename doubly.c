@@ -9,7 +9,7 @@ struct node{
 };
 
 struct node *head=NULL;
-struct node *new_node,*current_node,*prev_node,*next_node;
+struct node *new_node,*current_node,*prev_node,*next_node,*last_node;
 int pos;
 
 struct node * get_node(){
@@ -111,6 +111,31 @@ void display(){
 	printf("\n\ncount : %d",count);
     printf("\n\n***************Doubly linked list***************\n");
 }
+void display_rev(){
+	int count=0;
+	printf("\n***************Doubly linked list Reverse***************\n\n");
+	if(head==NULL)
+		printf("empty");
+	else{
+		current_node=head;
+		while(current_node->next_link!=NULL)
+				{
+					current_node=current_node->next_link;
+				}
+		last_node=current_node;
+		while(last_node!=NULL){
+		    
+				
+			printf("|%u||%d||%u|",last_node->next_link,last_node->data,last_node->before_link);
+			            if(last_node!=NULL){
+			                printf("-->");
+			            }
+			last_node=last_node->before_link;
+		}
+	
+    printf("\n\n***************Doubly linked list Reverse***************\n");
+	}
+}
 void delete_beg(){
 	current_node=head;
     if(head==NULL){
@@ -175,7 +200,7 @@ void main(){
 	int ch;
 	do{
 		printf("\n1.insert first\n2.insert end\n3.insert mid\n4.delete first");
-		printf("\n5.delete last\n6.delete mid\n7.display & count\n8.exit\nenter choice");
+		printf("\n5.delete last\n6.delete mid\n7.display & count\n8.Disply in reverse\n9.exit\nenter choice");
 		scanf("%d",&ch);
 
 		switch(ch){
@@ -204,8 +229,11 @@ void main(){
 			case 7:
 				display();
 				break;
+			case 8:
+				display_rev();
+				break;
 			default:
 				printf("\nenter valid choice\n");
 		}
-		}while(ch!=8);
+		}while(ch!=9);
 }
