@@ -199,42 +199,73 @@ void delete_mid(int pos){
 
 void main(){
 	int ch;
+	int sub;
 	do{
-		printf("\n1.insert first\n2.insert end\n3.insert mid\n4.delete first");
-		printf("\n5.delete last\n6.delete mid\n7.display & count\n8.Disply in reverse\n9.exit\nenter choice");
+		printf("\n1.insert\n2.delete\n3.traverse\n4..exit\nenter choice");
 		scanf("%d",&ch);
 
 		switch(ch){
 			case 1:
-				insert_beg();
+				
+				do{
+					printf("\n1.insert first\n2.insert end\n3.insert mid\n4.exit\nenter choice");
+					scanf("%d",&sub);
+					switch(sub){
+						case 1:
+							insert_beg();
+							break;
+						case 2:
+							insert_last();
+							break;
+						case 3:
+							printf("key : ");
+							scanf("%d",&pos);
+							insert_mid(pos);
+							break;
+						default:
+							printf("\nenter valid choice\n");
+					}
+				}while(sub!=4);
 				break;
 			case 2:
-				insert_last();
+				do{
+					printf("\n1.delete first\n2.delete end\n3.delete mid\n4.exit\nenter choice");
+					scanf("%d",&sub);
+					switch(sub){
+						case 1:
+							delete_beg();
+							break;
+						case 2:
+							delete_last();
+							break;
+						case 3:
+							printf("key : ");
+							scanf("%d",&pos);
+							delete_mid(pos);
+							break;
+						default:
+							printf("\nenter valid choice\n");
+					}
+				}while(sub!=4);
 				break;
 			case 3:
-				printf("key : ");
-				scanf("%d",&pos);
-				insert_mid(pos);
-				break;
-			case 4:
-                delete_beg();
-				break;
-			case 5:
-                delete_last();
-				break;
-			case 6:
-                printf("key : ");
-				scanf("%d",&pos);
-                delete_mid(pos);
-				break;
-			case 7:
-				display();
-				break;
-			case 8:
-				display_rev();
+				do{
+					printf("\n1.forward traversal\n2.reverse traversal\n3.exit\nenter choice");
+					scanf("%d",&sub);
+					switch(sub){
+						case 1:
+							display();
+							break;
+						case 2:
+							display_rev();
+							break;
+						default:
+							printf("\nenter valid choice\n");
+					}
+				}while(sub!=3);
 				break;
 			default:
 				printf("\nenter valid choice\n");
 		}
-		}while(ch!=9);
+		}while(ch!=4);
 }
