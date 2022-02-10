@@ -1,3 +1,7 @@
+/*
+K K Haridev
+CSE B
+*/
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -10,7 +14,7 @@ struct node{
 
 struct node *head=NULL;
 struct node *new_node,*current_node,*prev_node,*next_node,*last_node;
-int pos;
+int key;
 
 struct node * get_node(){
 	int ele;
@@ -20,7 +24,7 @@ struct node * get_node(){
 		return NULL;
 	}
 	else{
-		printf("enter the element to insert");
+		printf("\tEnter the element to insert : ");
 		scanf("%d",&ele);
 		temp->data=ele;
 		temp->next_link=NULL;
@@ -42,7 +46,7 @@ void insert_beg(){
 		}
 	}
 	else{
-		printf("\nno node created\n");
+		printf("\nNo node created\n");
 	}
 }
 void insert_last(){
@@ -63,19 +67,29 @@ void insert_last(){
 			}
 		}
 		else{
-			printf("\nno node created\n");
+			printf("\nNo node created\n");
 		}
 }
-void insert_mid(int pos){
+void insert_mid(int key){
 	int i;
 		new_node=get_node();
 		if(new_node!=NULL){
 			current_node=head;
-			while(current_node!=NULL&&current_node->data!=pos)
+			while(current_node!=NULL&&current_node->data!=key){
                 current_node=current_node->next_link;
+			}
             if(current_node==NULL){
-                printf("\nelement not found\n");
+                printf("\nElement not found\n");
             }
+			else if(current_node->next_link==NULL){
+				current_node=head;
+				while(current_node->next_link!=NULL)
+				{
+					current_node=current_node->next_link;
+				}
+				current_node->next_link=new_node;
+				new_node->before_link=current_node;
+			}
             else{
                 new_node->before_link=current_node;
                 new_node->next_link=current_node->next_link;
@@ -87,14 +101,14 @@ void insert_mid(int pos){
             }
 		}
 		else{
-			printf("\nno node created\n");
+			printf("\nNo node created\n");
 		}
 }
 void display(){
 	int count=0;
 	printf("\n***************Doubly linked list***************\n\n");
 	if(head==NULL)
-		printf("empty");
+		printf("Empty");
 	else{
 		current_node=head;
 		while(current_node!=NULL){
@@ -108,7 +122,7 @@ void display(){
 			count=count+1;
 		}
 	}
-	printf("\n\ncount : %d",count);
+	printf("\n\nCount : %d",count);
     printf("\n\n***************Doubly linked list***************\n");
 }
 void display_rev(){
@@ -140,7 +154,7 @@ void display_rev(){
 void delete_beg(){
 	current_node=head;
     if(head==NULL){
-        printf("\nempty\n");
+        printf("\nEmpty\n");
     }
 	else if(current_node->next_link==NULL){
 		free(current_node);
@@ -159,7 +173,7 @@ void delete_beg(){
 void delete_last(){
         current_node=head;
     if(head==NULL){
-        printf("\nempty\n");
+        printf("\nEmpty\n");
     }
 	else if(current_node->next_link==NULL){
 		free(current_node);
@@ -178,14 +192,14 @@ void delete_last(){
     }
 }
 
-void delete_mid(int pos){
+void delete_mid(int key){
     if(head==NULL){
-        printf("\nempty\n");
+        printf("\nEmpty\n");
     }
     else{
         current_node=head;
         next_node=current_node->next_link;
-        while(current_node->data!=pos&&current_node->next_link!=NULL){
+        while(current_node->data!=key&&current_node->next_link!=NULL){
             next_node=next_node->next_link;
             current_node=current_node->next_link;
         }
@@ -201,14 +215,14 @@ void main(){
 	int ch;
 	int sub;
 	do{
-		printf("\n1.insert\n2.delete\n3.traverse\n4..exit\nenter choice");
+		printf("\n1.Insert\n2.Delete\n3.Traverse\n4.Exit\nEnter choice : ");
 		scanf("%d",&ch);
 
 		switch(ch){
 			case 1:
 				
 				do{
-					printf("\n1.insert first\n2.insert end\n3.insert mid\n4.exit\nenter choice");
+					printf("\n\t1.Insert first\n\t2.Insert end\n\t3.Insert mid\n\t4.Exit\n\tEnter choice : ");
 					scanf("%d",&sub);
 					switch(sub){
 						case 1:
@@ -218,18 +232,21 @@ void main(){
 							insert_last();
 							break;
 						case 3:
-							printf("key : ");
-							scanf("%d",&pos);
-							insert_mid(pos);
+							printf("\tKey : ");
+							scanf("%d",&key);
+							insert_mid(key);
+							break;
+						case 4:
+							printf("\nBack to main menu...");
 							break;
 						default:
-							printf("\nenter valid choice\n");
+							printf("\n\tEnter valid choice\n");
 					}
 				}while(sub!=4);
 				break;
 			case 2:
 				do{
-					printf("\n1.delete first\n2.delete end\n3.delete mid\n4.exit\nenter choice");
+					printf("\n\t1.Delete first\n\t2.Delete end\n\t3.Delete mid\n\t4.Exit\n\tEnter choice : ");
 					scanf("%d",&sub);
 					switch(sub){
 						case 1:
@@ -239,18 +256,21 @@ void main(){
 							delete_last();
 							break;
 						case 3:
-							printf("key : ");
-							scanf("%d",&pos);
-							delete_mid(pos);
+							printf("\tKey : ");
+							scanf("%d",&key);
+							delete_mid(key);
+							break;
+						case 4:
+							printf("\nBack to main menu...");
 							break;
 						default:
-							printf("\nenter valid choice\n");
+							printf("\n\tEnter valid choice\n");
 					}
 				}while(sub!=4);
 				break;
 			case 3:
 				do{
-					printf("\n1.forward traversal\n2.reverse traversal\n3.exit\nenter choice");
+					printf("\n\t1.Forward traversal\n\t2.Reverse traversal\n\t3.Exit\n\tEnter choice : ");
 					scanf("%d",&sub);
 					switch(sub){
 						case 1:
@@ -259,13 +279,19 @@ void main(){
 						case 2:
 							display_rev();
 							break;
+						case 3:
+							printf("\nBack to main menu...");
+							break;
 						default:
-							printf("\nenter valid choice\n");
+							printf("\n\tEnter valid choice\n");
 					}
 				}while(sub!=3);
 				break;
+			case 4:
+				printf("\nExiting...");
+				break;
 			default:
-				printf("\nenter valid choice\n");
+				printf("\nEnter valid choice\n");
 		}
 		}while(ch!=4);
 }

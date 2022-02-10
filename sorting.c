@@ -3,7 +3,6 @@ K K Haridev
 CSE B
 */
 #include <stdio.h>
-#include <stdlib.h>
 int Max;
 
 void selection(int b[]){
@@ -77,11 +76,11 @@ int main(void) {
         printf("\n\n");
         break;
       case 0:
-        exit(0);
+        printf("\nExiting..");
         break;
       default:
         printf("invalid option");
     }
-  }while(ch=='y');
+  }while(option!=0);
   return 0;
 }
