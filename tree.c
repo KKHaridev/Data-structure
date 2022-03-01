@@ -42,23 +42,25 @@ void insert(int ele){
                 else{
                     flag=1;
                 }
-                if(flag==1)
-                    printf("Element exist");
-                else{
-                    if(parent->data<new_node->data)
-                        parent->r_child=new_node;
-                    else
-                        parent->l_child=new_node;
-                }
             }
-
+            if(flag==1)
+                printf("\nElement exist");
+            else{
+                if(parent->data<new_node->data)
+                    parent->r_child=new_node;
+                else
+                    parent->l_child=new_node;
+            }
         }
+    }
+    else{
+        printf("no node created");
     }
 }
 
 void inorder(struct node *ptr){
     if(root==NULL)
-        printf("Empty");
+        printf("\nEmpty");
     else{
         if(ptr!=NULL){
             inorder(ptr->l_child);
@@ -70,7 +72,7 @@ void inorder(struct node *ptr){
 
 void preorder(struct node *ptr){
     if(root==NULL)
-        printf("Empty");
+        printf("\nEmpty");
     else{
         if(ptr!=NULL){
             printf("%d ",ptr->data);
@@ -82,7 +84,7 @@ void preorder(struct node *ptr){
 
 void postorder(struct node *ptr){
     if(root==NULL)
-        printf("Empty");
+        printf("\nEmpty");
     else{
         if(ptr!=NULL){
             postorder(ptr->l_child);
@@ -97,11 +99,11 @@ void postorder(struct node *ptr){
 void main(){
     int option,sub,num;
     do{
-        printf("\n1.Insert\n2.Traverse\n3.exit\nEnter any option to continue");
+        printf("\n1.Insert\n2.Traverse\n3.exit\nEnter any option to continue : ");
         scanf("%d",&option);
         switch(option){
             case 1:
-            printf("\nEnter the element");
+            printf("Enter the element : ");
             scanf("%d",&num);
             insert(num);
             break;

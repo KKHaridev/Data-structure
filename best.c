@@ -17,7 +17,7 @@ struct node * get_node(int ele){
         return NULL;
     else{
         temp->data=ele;
-        temp->n_link=NULL
+        temp->n_link=NULL;
     }
 
 
@@ -125,13 +125,14 @@ void main(){
 
     else{
         for(int i=1;i<=n_blocks;i++){
-            printf("enter block Size %d : ",i);
+            printf("Enter block Size %d : ",i);
             scanf("%d",&block);
             insert(block);
         }
     }
+    printf("\n");
     for(int i=1;i<=n_process;i++){
-        printf("\nenter process Size %d : ",i);
+        printf("Enter process Size %d : ",i);
         scanf("%d",&process);
         a[i]=process;
     }
@@ -139,7 +140,7 @@ void main(){
     for(int i=1;i<=n_process;i++){
         int best_space=allocate(a[i]);
         if(best_space==0)
-            printf("\nlack of space\n");
+            printf("\nLack of space for allocating %d\n",a[i]);
         else
             printf("\n%d is allocates at %d\n",a[i],best_space);
 
